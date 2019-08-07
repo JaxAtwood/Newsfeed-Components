@@ -99,31 +99,62 @@ const data = [
   //   <span class='expandButton'></span>
   // </div>
 
-  let article = document.querySelector (".article");
+  const article = document.querySelector(".articles");
 
   data.forEach(data => {
-    article.appendChild (createArticle(data.title, data.date, data.paragraph))
+    article.appendChild(createArticle(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph));
   });
 
-  function createArticle (title, date, paragraph) {
-    let article = document.createArticle("div");
-    let articleTitle = document.createArticle ("h2");
-    let articleP = document.createArticle ("p");
-    let articleP1 = document.createArticle ("p");
-    let articleP2 = document.createArticle ("p");
-    let articleP3 = document.createArticle ("p");
-    let articleButton = document.createArticle ("button");
+  function createArticle (title, date, firstParagraph, secondParagraph, thirdParagraph) {
+    const article = document.createElement("div");
+    
+    const articleTitle = document.createElement("h2");
+    const articleDate = document.createElement("p");
+    const articleBox = document.createElement("div");
+    const articleP1 = document.createElement("p");
+    const articleP2 = document.createElement("p");
+    const articleP3 = document.createElement("p");
+    const articleButton = document.createElement("div");
+    const buttonOpen = document.createElement("span");
+    const buttonClose = document.createElement("span");
+    
+    article.appendChild(articleBox);
+    article.appendChild(articleTitle);
+    article.appendChild(articleDate);
+    articleBox.appendChild(articleP1);
+    articleBox.appendChild(articleP2);
+    articleBox.appendChild(articleP3);
+    articleBox.appendChild(articleButton);
+    articleButton.appendChild(buttonOpen);
+    articleButton.appendChild(buttonClose);
+  
+
+    article.classList.add("article")
+    articleBox.classList.add("article-box")
+    articleButton.classList.add("article-btn")
+    buttonOpen.classList.add("btn-open")
+    buttonClose.classList.add("btn-close", "btn-hide")
+
+
+    const open = "\u25bf";
+    const close = "\u25b5";
+
+    articleTitle.textContent = title, date;
+    buttonOpen.textContent = open;
+    buttonClose.textContent = close;
+    articleBox.textContent = firstParagraph, secondParagraph, thirdParagraph;
+
+
+    articleButton.addEventListener("toggle", event => {
+      buttonOpen.classList.toggle ("btn-hide")
+      buttonClose.classList.toggle ("btn-hide")
+    })
+    return article
   }
 
 
 
-
-
-
-
-
 //   Hint: You will need to use createElement more than once here!
-
 //   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each peice of the data object above.
 
 //   Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
