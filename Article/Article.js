@@ -107,50 +107,39 @@ const data = [
 
   function createArticle (title, date, firstParagraph, secondParagraph, thirdParagraph) {
     const article = document.createElement("div");
-    
+    const articleSection = document.createElement("div")
     const articleTitle = document.createElement("h2");
     const articleDate = document.createElement("p");
-    const articleBox = document.createElement("div");
+    const buttonOpen = document.createElement("span");
     const articleP1 = document.createElement("p");
     const articleP2 = document.createElement("p");
     const articleP3 = document.createElement("p");
-    const articleButton = document.createElement("div");
-    const buttonOpen = document.createElement("span");
-    const buttonClose = document.createElement("span");
-    
-    article.appendChild(articleBox);
-    article.appendChild(articleTitle);
-    article.appendChild(articleDate);
-    articleBox.appendChild(articleP1);
-    articleBox.appendChild(articleP2);
-    articleBox.appendChild(articleP3);
-    articleBox.appendChild(articleButton);
-    articleButton.appendChild(buttonOpen);
-    articleButton.appendChild(buttonClose);
+      
+    article.appendChild(articleSection);
+    articleSection.appendChild(articleTitle);
+    articleSection.appendChild(articleDate);
+    articleSection.appendChild(buttonOpen);
+    buttonOpen.appendChild(articleP1);
+    buttonOpen.appendChild(articleP2);
+    buttonOpen.appendChild(articleP3);
   
-
     article.classList.add("article")
-    articleBox.classList.add("article-box")
-    articleButton.classList.add("article-btn")
-    buttonOpen.classList.add("btn-open")
-    buttonClose.classList.add("btn-close", "btn-hide")
-
-
+    articleSection.classList.add("article-open")  
+    buttonOpen.classList.add("expandButton")
+  
     const open = "\u25bf";
-    const close = "\u25b5";
-
-    articleTitle.textContent = title, date;
+    articleTitle.textContent = title, 
+    articleDate.textContent = date;
+    articleP1.textContent = firstParagraph;
+    articleP2.textContent = secondParagraph;
+    articleP3.textContent = thirdParagraph;
     buttonOpen.textContent = open;
-    buttonClose.textContent = close;
-    articleBox.textContent = firstParagraph, secondParagraph, thirdParagraph;
-
-
-    articleButton.addEventListener("toggle", event => {
-      buttonOpen.classList.toggle ("btn-hide")
-      buttonClose.classList.toggle ("btn-hide")
-    })
+    
+    buttonOpen.addEventListener("click", () => {
+      article.classList.toggle("toggle-on");
+      })
     return article
-  }
+    }
 
 
 
