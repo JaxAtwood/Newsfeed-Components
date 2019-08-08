@@ -85,30 +85,85 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Jackie Jackie Jackie',
+    date: 'Sept 9th, 2019',
+    firstParagraph: `Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie`,
+
+    secondParagraph: `Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie`,
+
+    thirdParagraph: `Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie`,
+    
   }
 ];
 
-/* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
+// Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
-  <div class="article">
-    <h2>{title of the article}</h2>
-    <p class="date">{date of the article}</p>
+  // <div class="article">
+  //   <h2>{title of the article}</h2>
+  //   <p class="date">{date of the article}</p>
 
-    {three separate paragraph elements}
+  //   {three separate paragraph elements}
 
-    <span class='expandButton'></span>
-  </div>
+  //   <span class='expandButton'></span>
+  // </div>
 
-  Hint: You will need to use createElement more than once here!
+  const article = document.querySelector(".articles");
 
-  Your function should take either an object as it's one argument, or 5 separate arguments mapping to each peice of the data object above.
+  data.forEach(data => {
+    article.appendChild(createArticle(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph));
+  });
 
-  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
+  function createArticle (title, date, firstParagraph, secondParagraph, thirdParagraph) {
+    const article = document.createElement("div");
+      const articleSection = document.createElement("div")
+        const articleTitle = document.createElement("h2");
+        const articleDate = document.createElement("p");
+      const buttonOpen = document.createElement("span");
+        const pContainer = document.createElement("div");
+          const articleP1 = document.createElement("p");
+          const articleP2 = document.createElement("p");
+          const articleP3 = document.createElement("p");
+      
+    article.appendChild(articleSection);
+    articleSection.appendChild(articleTitle);
+    articleSection.appendChild(articleDate);
+    articleSection.appendChild(buttonOpen);
+    articleSection.appendChild(pContainer);
+    pContainer.appendChild(articleP1);
+    pContainer.appendChild(articleP2);
+    pContainer.appendChild(articleP3);
+  
+    article.classList.add("article")
+    articleSection.classList.add("article-open")  //<------do not change the name
+    buttonOpen.classList.add("expandButton")     //<------do not change the name
+    pContainer.classList.add("p-container")
+    
+    const open = "\u2b9f \u2b9f \u2b9f"; 
+    articleTitle.textContent = title, 
+    articleDate.textContent = date;
+    articleP1.textContent = firstParagraph;
+    articleP2.textContent = secondParagraph;
+    articleP3.textContent = thirdParagraph;
+    buttonOpen.textContent = open;
+    
+    buttonOpen.addEventListener("click", () => {
+      article.classList.toggle("toggle-on");
+      pContainer.classList.toggle("p-container-open");
+      })
+    return article
+    }
 
-  Step 3: return the entire component.
 
-  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
 
-  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
+//   Hint: You will need to use createElement more than once here!
+//   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each peice of the data object above.
 
-*/
+//   Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
+
+//   Step 3: return the entire component.
+
+//   Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
+
+//   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
