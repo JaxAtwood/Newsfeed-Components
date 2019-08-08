@@ -85,6 +85,16 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Jackie Jackie Jackie',
+    date: 'Sept 9th, 2019',
+    firstParagraph: `Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie`,
+
+    secondParagraph: `Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie`,
+
+    thirdParagraph: `Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie Jackie`,
+    
   }
 ];
 
@@ -107,27 +117,30 @@ const data = [
 
   function createArticle (title, date, firstParagraph, secondParagraph, thirdParagraph) {
     const article = document.createElement("div");
-    const articleSection = document.createElement("div")
-    const articleTitle = document.createElement("h2");
-    const articleDate = document.createElement("p");
-    const buttonOpen = document.createElement("span");
-    const articleP1 = document.createElement("p");
-    const articleP2 = document.createElement("p");
-    const articleP3 = document.createElement("p");
+      const articleSection = document.createElement("div")
+        const articleTitle = document.createElement("h2");
+        const articleDate = document.createElement("p");
+      const buttonOpen = document.createElement("span");
+        const pContainer = document.createElement("div");
+          const articleP1 = document.createElement("p");
+          const articleP2 = document.createElement("p");
+          const articleP3 = document.createElement("p");
       
     article.appendChild(articleSection);
     articleSection.appendChild(articleTitle);
     articleSection.appendChild(articleDate);
     articleSection.appendChild(buttonOpen);
-    buttonOpen.appendChild(articleP1);
-    buttonOpen.appendChild(articleP2);
-    buttonOpen.appendChild(articleP3);
+    articleSection.appendChild(pContainer);
+    pContainer.appendChild(articleP1);
+    pContainer.appendChild(articleP2);
+    pContainer.appendChild(articleP3);
   
     article.classList.add("article")
-    articleSection.classList.add("article-open")  
-    buttonOpen.classList.add("expandButton")
-  
-    const open = "\u25bf";
+    articleSection.classList.add("article-open")  //<------do not change the name
+    buttonOpen.classList.add("expandButton")     //<------do not change the name
+    pContainer.classList.add("p-container")
+    
+    const open = "\u2b9f \u2b9f \u2b9f"; 
     articleTitle.textContent = title, 
     articleDate.textContent = date;
     articleP1.textContent = firstParagraph;
@@ -137,6 +150,7 @@ const data = [
     
     buttonOpen.addEventListener("click", () => {
       article.classList.toggle("toggle-on");
+      pContainer.classList.toggle("p-container-open");
       })
     return article
     }

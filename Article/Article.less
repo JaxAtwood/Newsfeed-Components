@@ -7,13 +7,11 @@
     border-radius: 10px;
     background-color: white;
     position: relative;
-    height: 200px;
+    height: auto;
     overflow: hidden;
     box-shadow: 2px 2px 2px lightgrey;
   }
 }
-
-
 
 .article {
   margin: 20px 10%;
@@ -25,6 +23,16 @@
   height: 100px;
   overflow: hidden;
   box-shadow: 2px 2px 2px lightgrey;
+
+  .p-container {
+    display: none;
+    transition: all 1.4s ease;
+  }
+
+  .p-container-open {
+    display: block;
+    transition: all 1.4s ease;
+  }
 
   h2 {
     font-size: 28px;
